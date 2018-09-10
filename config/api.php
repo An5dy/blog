@@ -23,8 +23,8 @@ return [
     'passport' => [
         'password_client_id' => env('PASSWORD_CLIENT_ID'),
         'password_client_secret' => env('PASSWORD_CLIENT_SECRET'),
-        'access_token_expire' => 86400,// 30分钟
-        'refresh_token_expire' => 14400,// 10天
+        'access_token_expire' => 86400,// 30分钟 秒为单位
+        'refresh_token_expire' => 14400,// 10天 分钟为单位
     ],
 
     /*

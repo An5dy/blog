@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Database\Events\QueryExecuted' => [
             'App\Listeners\QueryListener',// 执行 sql 监听
         ],
+        'Laravel\Passport\Events\AccessTokenCreated' => [
+            'App\Listeners\RevokeOldTokens',// 登录移除旧的 access_token 和 refresh_token
+        ],
     ];
 
     /**
