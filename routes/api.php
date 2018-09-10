@@ -35,3 +35,11 @@ Route::apiResource('articles', 'Api\ArticleController', [
 ]);// 文章
 Route::get('/archives', 'Api\ArticleController@archive');// 归档
 
+/*
+|--------------------------------------------------------------------------
+| gitHub web hook
+|--------------------------------------------------------------------------
+*/
+
+Route::post('deploy', 'Hook\GithubWebHookController');
+
