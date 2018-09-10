@@ -1,0 +1,42 @@
+@font-color: #ffffff;
+@bg-color: #606266;
+@ho-color: #409eff;
+.footer {
+  width: 100%;
+  height: 70px;
+  background-color: @bg-color;
+  overflow: hidden;
+  .footer-container {
+    padding: 0 10px;
+    .footer-meta {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      .footer-site-desc {
+        float: left;
+        font-size: 14px;
+        color: @font-color;
+        line-height: 40px;
+        a {
+          color: @font-color;
+          &:hover {
+            color: @ho-color;
+          }
+        }
+      }
+      .footer-social {
+        float: right;
+        line-height: 80px;
+        &>span {
+          padding: 0 10px;
+          &>a {
+            color: @font-color;
+            &:hover {
+              color: @ho-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

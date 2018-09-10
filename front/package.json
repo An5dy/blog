@@ -1,0 +1,33 @@
+{
+  "name": "blog2.0",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "highlight.js": "^9.12.0",
+    "marked": "^0.5.0",
+    "normalize.css": "^8.0.0",
+    "nprogress": "^0.2.0",
+    "particles.js": "^2.0.0",
+    "velocity-animate": "^1.5.2",
+    "vue": "^2.5.17",
+    "vue-awesome": "^3.1.0",
+    "vue-headroom": "^0.8.1",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0",
+    "@vue/cli-plugin-eslint": "^3.0.0",
+    "@vue/cli-service": "^3.0.0",
+    "@vue/eslint-config-prettier": "^3.0.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.17"
+  }
+}

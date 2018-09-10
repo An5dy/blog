@@ -1,0 +1,92 @@
+@font-hover-color: #409EFF;
+@height: 60px;
+.header {
+  position: relative;
+  height: @height;
+  background-color: #fff;
+  line-height: @height;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+  text-align: right;
+  .nav-logo {
+    font-size: 24px;
+    line-height: @height;
+    position: absolute;
+    display: block;
+    width: auto;
+    max-width: 50%;
+    height: @height;
+    color: #303133;
+    margin: 0 15px;
+    font-weight: 500;
+    &:hover {
+      color: @font-hover-color;
+    }
+  }
+  .nav-container {
+    position: relative;
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
+    height: @height;
+    @media (max-width: 768px) {
+      .nav-search {
+        display: none !important;
+      }
+    }
+    .nav-search {
+      float: right;
+      width: auto;
+      line-height: @height;
+      height: @height;
+      margin-right: 15px;
+      .nav-search-input {
+        padding: 5px 20px 5px 10px;
+        border-radius: 50px;
+        width: 0px;
+        transition: all .3s;
+        border: 1px solid #E4E7ED;
+        border-width: 0;
+        outline: none;
+        overflow: hidden;
+        font-size: 14px;
+        &:focus {
+          width: 150px;
+          border: 1px solid @font-hover-color;
+          box-shadow: 0px 0px 1px 0px @font-hover-color;
+        }
+      }
+      .nav-search-icon {
+        position: absolute;
+        right: 140px;
+        top: 22px;
+        color: #606266;
+      }
+      &:hover {
+        cursor: pointer;
+        .nav-search-input {
+          width: 150px;
+          border-width: 1px;
+        }
+        .nav-search-icon {
+          color: @font-hover-color;
+        }
+      }
+    }
+    .nav-menus {
+      float: right;
+      &>a {
+        padding: 0 15px;
+        display: block;
+        float: left;
+        line-height: @height - 1;
+        font-size: 15px;
+        color: #606266;
+        &:hover {
+          color: @font-hover-color;
+          border-bottom: 2px solid @font-hover-color;
+          transition: ease-in-out .2s;
+        }
+      }
+    }
+  }
+}
