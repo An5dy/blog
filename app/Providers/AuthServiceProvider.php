@@ -32,6 +32,6 @@ class AuthServiceProvider extends ServiceProvider
         // 设置 passport 路由失效时间
         $passportConfig = config('api.passport');
         Passport::tokensExpireIn(Carbon::now()->addSeconds($passportConfig['access_token_expire']));
-        Passport::refreshTokensExpireIn(Carbon::now()->addSeconds($passportConfig['refresh_token_expire']));
+        Passport::refreshTokensExpireIn(Carbon::now()->addMinutes($passportConfig['refresh_token_expire']));
     }
 }
