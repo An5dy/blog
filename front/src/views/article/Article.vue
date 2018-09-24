@@ -101,7 +101,7 @@ export default {
     }
   },
   updated() {
-    this.initParticles();
+    // this.initParticles();
   },
   mounted() {
     this.showArticle();
