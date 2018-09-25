@@ -69,6 +69,7 @@ class ArticleService
                 ->withCount('views')
                 ->with('category:id,title', 'tags:id,title')
                 ->filter($filter)
+                ->latest('id')
                 ->paginate(is_admin() ? config('api.paginate.admin') : config('api.paginate.front'));
         });
 
