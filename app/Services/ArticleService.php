@@ -67,14 +67,7 @@ class ArticleService
             return $this->article
                 ->select(['id', 'category_id', 'title', 'cover_img', 'description', 'created_at'])
                 ->withCount('views')
-                ->with([
-                    'category' => function ($query) {
-                        return $query->select(['id', 'title']);
-                    },
-                    'tags' => function ($query) {
-                        return $query->select(['id', 'title']);
-                    },
-                ])
+                ->with('category:id,title', 'tags:id,title')
                 ->filter($filter)
                 ->paginate(is_admin() ? config('api.paginate.admin') : config('api.paginate.front'));
         });
@@ -119,14 +112,7 @@ class ArticleService
         $article = $this->remember(function () use ($id) {
             return $this->article
                 ->withCount('views')
-                ->with([
-                    'category' => function ($query) {
-                        return $query->select(['id', 'title']);
-                    },
-                    'tags' => function ($query) {
-                        return $query->select(['id', 'title']);
-                    },
-                ])
+                ->with('category:id,title', 'tags:id,title')
                 ->findOrFail($id, ['category_id', 'title', 'cover_img', 'description', 'created_at']);
         });
 
@@ -167,23 +153,25 @@ class ArticleService
     }
 
     /**
-     * @param mixed $attribute
+     * 设置参数
+     *
+     * @param $request
      */
-    protected function setAttribute($request)
+    protected function setAttribute($request): void
     {
-        $this->attribute = [
-            'title' => $request->title,
-            'category_id' => $request->category_id,
-            'cover_img' => $request->cover_img,
-            'markdown' => $request->markdown,
-            'description' => str_limit(strip_tags(markdown($request->markdown)), config('api.article.description')),
-        ];
+        $this->attribute = collect($request->only([
+            'title', 'category_id', 'cover_img', 'markdown'
+        ]))
+            ->put('description', str_limit(strip_tags(markdown($request->markdown)), config('api.article.description')))
+            ->toArray();
     }
 
     /**
-     * @return mixed
+     * 保存参数
+     *
+     * @return array
      */
-    protected function getAttribute()
+    protected function getAttribute(): array
     {
         return $this->attribute;
     }

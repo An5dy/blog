@@ -49,7 +49,7 @@ trait CacheTrait
     }
 
     /**
-     *
+     * 设置缓存
      *
      * @param $key
      * @param Closure $callback

@@ -97,7 +97,7 @@ class CategoryService
     /**
      * @param $request
      */
-    protected function setAttribute($request)
+    protected function setAttribute($request): void
     {
         $this->attribute = $request->only(['title']);
     }

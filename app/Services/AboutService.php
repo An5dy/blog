@@ -76,7 +76,7 @@ class AboutService
     /**
      * @param $request
      */
-    protected function setAttribute($request)
+    protected function setAttribute($request): void
     {
         $this->attribute = $request->only(['title', 'markdown']);
     }
@@ -84,7 +84,7 @@ class AboutService
     /**
      * @return mixed
      */
-    protected function getAttribute()
+    protected function getAttribute(): array
     {
         return $this->attribute;
     }
