@@ -5,6 +5,7 @@ namespace App\Services;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Services\ImageService;
 use App\Services\Traits\CacheTrait;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticleCollection;
@@ -160,11 +161,20 @@ class ArticleService
      */
     protected function setAttribute($request): void
     {
+        // 截取文章
+        $description = str_limit(strip_tags(markdown($request->markdown)), config('api.article.description'));
+
         $this->attribute = collect($request->only([
-            'title', 'category_id', 'cover_img', 'markdown'
+            'title', 'category_id', 'markdown'
         ]))
-            ->put('description', str_limit(strip_tags(markdown($request->markdown)), config('api.article.description')))
+            ->put('description', $description)
             ->toArray();
+
+        // 上传图片
+        $imagePath = (new ImageService())->upload($request);
+        if (!empty($imagePath)) {
+            $this->attribute['cover_img'] = $imagePath['basePath'];
+        }
     }
 
     /**

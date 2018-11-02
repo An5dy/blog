@@ -25,10 +25,11 @@ class ArticleStoreRequest extends FormRequest
     {
         return [
             'title' => 'bail|required|string|max:60',
-            'cover_img' => 'bail|string|max:255',
+            // 'cover_img' => 'bail|string|max:255',
             'category_id' => 'bail|required|integer|exists:categories,id',
             'markdown' => 'bail|required|string',
             'tags.*' => 'bail|string|max:60',
+            'image' => 'bail|required|image'
         ];
     }
 }

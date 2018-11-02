@@ -78,50 +78,50 @@
 <script>
 import { reset } from "@/api/login";
 export default {
-  name: "AppHeader",
-  data() {
-    return {
-      dialogFormVisible: false,
-      formLabelWidth: "70px",
-      user: {
-        username: "",
-        new_password: "",
-        old_password: "",
-        new_password_confirmation: ""
-      }
-    };
-  },
-  methods: {
-    handleCommand(command) {
-      if (command === "logout") {
-        this.$confirm("退出登录，是否继续？", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        })
-          .then(() => {
-            this.$store.dispatch("logout").then(() => {
-              location.reload();
-            });
-          })
-          .catch(() => {});
-      }
-      if (command === "passwordReset") {
-        this.dialogFormVisible = true;
-      }
+    name: "AppHeader",
+    data() {
+        return {
+            dialogFormVisible: false,
+            formLabelWidth: "70px",
+            user: {
+                username: "",
+                new_password: "",
+                old_password: "",
+                new_password_confirmation: ""
+            }
+        };
     },
-    onSubmit() {
-      reset(this.user).then(() => {
-        this.dialogFormVisible = false;
-        this.$notify({
-          title: "成功",
-          message: "修改成功",
-          type: "success",
-          duration: 2000
-        });
-      });
+    methods: {
+        handleCommand(command) {
+            if (command === "logout") {
+                this.$confirm("退出登录，是否继续？", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
+                })
+                    .then(() => {
+                        this.$store.dispatch("logout").then(() => {
+                            location.reload();
+                        });
+                    })
+                    .catch(() => {});
+            }
+            if (command === "passwordReset") {
+                this.dialogFormVisible = true;
+            }
+        },
+        onSubmit() {
+            reset(this.user).then(() => {
+                this.dialogFormVisible = false;
+                this.$notify({
+                    title: "成功",
+                    message: "修改成功",
+                    type: "success",
+                    duration: 2000
+                });
+            });
+        }
     }
-  }
 };
 </script>
 

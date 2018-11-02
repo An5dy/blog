@@ -19,12 +19,12 @@ import AppHeader from "@/components/AppHeader";
 import AppSidebar from "@/components/AppSidebar";
 import AppBreadcrumb from "@/components/AppBreadcrumb";
 export default {
-  name: "Layout",
-  components: {
-    AppHeader,
-    AppSidebar,
-    AppBreadcrumb
-  }
+    name: "Layout",
+    components: {
+        AppHeader,
+        AppSidebar,
+        AppBreadcrumb
+    }
 };
 </script>
 

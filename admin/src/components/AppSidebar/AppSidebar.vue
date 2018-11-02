@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: "AppSidebar"
+    name: "AppSidebar"
 };
 </script>
 

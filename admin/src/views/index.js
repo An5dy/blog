@@ -6,10 +6,10 @@ import ArticleList from "./artcileList";
 import About from "./about";
 
 export default {
-  Login,
-  Layout,
-  ArticleAdd,
-  Category,
-  ArticleList,
-  About
+    Login,
+    Layout,
+    ArticleAdd,
+    Category,
+    ArticleList,
+    About
 };

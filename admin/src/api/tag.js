@@ -6,11 +6,11 @@ import request from "@/utils/request";
  * @param {*} id
  */
 export function deleteTag(id) {
-  return request({
-    url: "/tags/" + id,
-    method: "post",
-    data: {
-      _method: "DELETE"
-    }
-  });
+    return request({
+        url: "/tags/" + id,
+        method: "post",
+        data: {
+            _method: "DELETE"
+        }
+    });
 }

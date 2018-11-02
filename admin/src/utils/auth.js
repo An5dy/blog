@@ -8,7 +8,7 @@ const ACCESS_TOKEN_KEY = "admin_access_token";
  * @returns
  */
 export function setAccessToken(accessToken) {
-  return window.sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+    return window.sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 }
 
 /**
@@ -18,7 +18,7 @@ export function setAccessToken(accessToken) {
  * @returns
  */
 export function getAccessToken() {
-  return window.sessionStorage.getItem(ACCESS_TOKEN_KEY);
+    return window.sessionStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
 /**
@@ -28,5 +28,5 @@ export function getAccessToken() {
  * @returns
  */
 export function delAccessToken() {
-  return window.sessionStorage.removeItem(ACCESS_TOKEN_KEY);
+    return window.sessionStorage.removeItem(ACCESS_TOKEN_KEY);
 }

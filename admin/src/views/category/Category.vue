@@ -90,106 +90,106 @@
 
 <script>
 import {
-  getCategories,
-  storeCategory,
-  updateCategory,
-  deleteCategory
+    getCategories,
+    storeCategory,
+    updateCategory,
+    deleteCategory
 } from "@/api/category";
 export default {
-  name: "Category",
-  data() {
-    return {
-      categories: [],
-      loading: true,
-      dialogTitle: {
-        create: "新增分类",
-        edit: "修改分类"
-      },
-      dialogStatus: "create",
-      category: {
-        id: 0,
-        title: ""
-      },
-      dialogFormVisible: false
-    };
-  },
-  methods: {
-    /* 获取分类 */
-    getCategories() {
-      getCategories().then(response => {
-        this.loading = false;
-        this.categories = response.data.data;
-      });
+    name: "Category",
+    data() {
+        return {
+            categories: [],
+            loading: true,
+            dialogTitle: {
+                create: "新增分类",
+                edit: "修改分类"
+            },
+            dialogStatus: "create",
+            category: {
+                id: 0,
+                title: ""
+            },
+            dialogFormVisible: false
+        };
     },
-    /* 打开 dialog */
-    openFormDialog() {
-      this.category.title = "";
-      this.dialogFormVisible = true;
-      this.dialogStatus = "create";
-      this.$nextTick(() => {});
-    },
-    /* 新增 Category */
-    createCategory() {
-      let formData = {
-        title: this.category.title
-      };
-      storeCategory(formData).then(() => {
-        this.dialogFormVisible = false;
-        this.getCategories();
-        this.$notify({
-          title: "成功",
-          message: "分类添加成功",
-          type: "success",
-          duration: 2000
-        });
-      });
-    },
-    /* 修改 Category */
-    editCategory(category) {
-      this.category.title = category.title;
-      this.category.id = category.id;
-      this.dialogStatus = "edit";
-      this.dialogFormVisible = true;
-    },
-    updateCategory() {
-      let formData = {
-        title: this.category.title
-      };
-      updateCategory(formData, this.category.id).then(() => {
-        for (let category of this.categories) {
-          if (category.id === this.category.id) {
-            category.title = this.category.title;
-            break;
-          }
+    methods: {
+        /* 获取分类 */
+        getCategories() {
+            getCategories().then(response => {
+                this.loading = false;
+                this.categories = response.data.data;
+            });
+        },
+        /* 打开 dialog */
+        openFormDialog() {
+            this.category.title = "";
+            this.dialogFormVisible = true;
+            this.dialogStatus = "create";
+            this.$nextTick(() => {});
+        },
+        /* 新增 Category */
+        createCategory() {
+            let formData = {
+                title: this.category.title
+            };
+            storeCategory(formData).then(() => {
+                this.dialogFormVisible = false;
+                this.getCategories();
+                this.$notify({
+                    title: "成功",
+                    message: "分类添加成功",
+                    type: "success",
+                    duration: 2000
+                });
+            });
+        },
+        /* 修改 Category */
+        editCategory(category) {
+            this.category.title = category.title;
+            this.category.id = category.id;
+            this.dialogStatus = "edit";
+            this.dialogFormVisible = true;
+        },
+        updateCategory() {
+            let formData = {
+                title: this.category.title
+            };
+            updateCategory(formData, this.category.id).then(() => {
+                for (let category of this.categories) {
+                    if (category.id === this.category.id) {
+                        category.title = this.category.title;
+                        break;
+                    }
+                }
+                this.dialogFormVisible = false;
+                this.$notify({
+                    title: "成功",
+                    message: "分类修改成功",
+                    type: "success",
+                    duration: 2000
+                });
+            });
+        },
+        /* 删除 Category */
+        deleteCategory(scope) {
+            this.$confirm("是否删除?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    deleteCategory(scope.row.id).then(response => {
+                        this.categories.splice(scope.$index, 1);
+                        this.$message.success(response.data.message);
+                    });
+                })
+                .catch(() => {});
         }
-        this.dialogFormVisible = false;
-        this.$notify({
-          title: "成功",
-          message: "分类修改成功",
-          type: "success",
-          duration: 2000
-        });
-      });
     },
-    /* 删除 Category */
-    deleteCategory(scope) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          deleteCategory(scope.row.id).then(response => {
-            this.categories.splice(scope.$index, 1);
-            this.$message.success(response.data.message);
-          });
-        })
-        .catch(() => {});
+    mounted() {
+        this.getCategories();
     }
-  },
-  mounted() {
-    this.getCategories();
-  }
 };
 </script>
 

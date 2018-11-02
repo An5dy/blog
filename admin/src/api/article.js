@@ -6,11 +6,11 @@ import request from "@/utils/request";
  * @param {*} data
  */
 export function storeArticle(data) {
-  return request({
-    url: "/articles",
-    method: "post",
-    data
-  });
+    return request({
+        url: "/articles",
+        method: "post",
+        data
+    });
 }
 
 /**
@@ -19,10 +19,10 @@ export function storeArticle(data) {
  * @param {*} id
  */
 export function showArtcile(id) {
-  return request({
-    url: "/articles/" + id,
-    method: "get"
-  });
+    return request({
+        url: "/articles/" + id,
+        method: "get"
+    });
 }
 
 /**
@@ -31,11 +31,11 @@ export function showArtcile(id) {
  * @param {*} data
  */
 export function getArticles(data) {
-  return request({
-    url: "/articles",
-    method: "get",
-    params: data
-  });
+    return request({
+        url: "/articles",
+        method: "get",
+        params: data
+    });
 }
 
 /**
@@ -44,13 +44,13 @@ export function getArticles(data) {
  * @param {*} id
  */
 export function deleteArticle(id) {
-  return request({
-    url: "/articles/" + id,
-    method: "post",
-    data: {
-      _method: "DELETE"
-    }
-  });
+    return request({
+        url: "/articles/" + id,
+        method: "post",
+        data: {
+            _method: "DELETE"
+        }
+    });
 }
 
 /**
@@ -60,10 +60,10 @@ export function deleteArticle(id) {
  * @param {*} data
  */
 export function updateArticle(id, data) {
-  data["_method"] = "PUT";
-  return request({
-    url: "/articles/" + id,
-    method: "post",
-    data
-  });
+    data.append("_method", "PUT");
+    return request({
+        url: "/articles/" + id,
+        method: "post",
+        data
+    });
 }

@@ -33,69 +33,69 @@
 
 <script>
 export default {
-  name: "Login",
-  data() {
-    const validateName = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error("用户名不能为空。"));
-      } else {
-        callback();
-      }
-    };
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("密码不能小于6位。"));
-      } else {
-        callback();
-      }
-    };
-    return {
-      loading: false,
-      loginForm: {
-        name: "",
-        password: ""
-      },
-      loginRules: {
-        name: [
-          {
-            required: true,
-            trigger: "blur",
-            validator: validateName
-          }
-        ],
-        password: [
-          {
-            required: true,
-            trigger: "blur",
-            validator: validatePassword
-          }
-        ]
-      }
-    };
-  },
-  methods: {
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true;
-          let data = {
-            username: this.loginForm.name,
-            password: this.loginForm.password
-          };
-          this.$store
-            .dispatch("login", data)
-            .then(() => {
-              this.$router.push("/");
-            })
-            .catch(() => {
-              this.loading = false;
+    name: "Login",
+    data() {
+        const validateName = (rule, value, callback) => {
+            if (!value) {
+                callback(new Error("用户名不能为空。"));
+            } else {
+                callback();
+            }
+        };
+        const validatePassword = (rule, value, callback) => {
+            if (value.length < 6) {
+                callback(new Error("密码不能小于6位。"));
+            } else {
+                callback();
+            }
+        };
+        return {
+            loading: false,
+            loginForm: {
+                name: "",
+                password: ""
+            },
+            loginRules: {
+                name: [
+                    {
+                        required: true,
+                        trigger: "blur",
+                        validator: validateName
+                    }
+                ],
+                password: [
+                    {
+                        required: true,
+                        trigger: "blur",
+                        validator: validatePassword
+                    }
+                ]
+            }
+        };
+    },
+    methods: {
+        handleLogin() {
+            this.$refs.loginForm.validate(valid => {
+                if (valid) {
+                    this.loading = true;
+                    let data = {
+                        username: this.loginForm.name,
+                        password: this.loginForm.password
+                    };
+                    this.$store
+                        .dispatch("login", data)
+                        .then(() => {
+                            this.$router.push("/");
+                        })
+                        .catch(() => {
+                            this.loading = false;
+                        });
+                } else {
+                    return false;
+                }
             });
-        } else {
-          return false;
         }
-      });
     }
-  }
 };
 </script>
 

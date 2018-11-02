@@ -6,10 +6,10 @@ import request from "@/utils/request";
  * @param {*} formData
  */
 export function imageUpload(formData) {
-  return request({
-    url: "/images",
-    method: "post",
-    data: formData,
-    headers: { "Content-Type": "multipart/form-data" }
-  });
+    return request({
+        url: "/images",
+        method: "post",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" }
+    });
 }

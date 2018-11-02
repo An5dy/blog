@@ -31,6 +31,11 @@ class ImageService
     public function upload(Request $request): array
     {
         $image = $request->file('image');
+
+        if (empty($image)) {
+            return [];
+        }
+
         if (! $image->isValid()) {
             throw new ApiException('请上传正确的图片', Code::VALIDATE_FAIL);
         }

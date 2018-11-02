@@ -77,77 +77,77 @@
 import { getArticles, deleteArticle } from "@/api/article";
 import { deleteTag } from "@/api/tag";
 export default {
-  name: "ArticleList",
-  data() {
-    return {
-      loading: true,
-      articles: [],
-      page: 1,
-      total: 0,
-      pageSize: 0
-    };
-  },
-  methods: {
-    /**
-     * 获取文章列表
-     */
-    getArticles() {
-      let formData = {
-        page: this.page
-      };
-      getArticles(formData).then(response => {
-        this.loading = false;
-        this.articles = response.data.data;
-        this.page = response.data.meta.current_page;
-        this.total = response.data.meta.total;
-        this.pageSize = response.data.meta.per_page;
-      });
+    name: "ArticleList",
+    data() {
+        return {
+            loading: true,
+            articles: [],
+            page: 1,
+            total: 0,
+            pageSize: 0
+        };
     },
-    /**
-     * 分页
-     */
-    handleCurrentChange(val) {
-      this.page = val;
-      this.getArticles();
-    },
-    /**
-     * 删除文章
-     */
-    deleteArticle(scope) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      })
-        .then(() => {
-          deleteArticle(scope.row.id).then(response => {
+    methods: {
+        /**
+         * 获取文章列表
+         */
+        getArticles() {
+            let formData = {
+                page: this.page
+            };
+            getArticles(formData).then(response => {
+                this.loading = false;
+                this.articles = response.data.data;
+                this.page = response.data.meta.current_page;
+                this.total = response.data.meta.total;
+                this.pageSize = response.data.meta.per_page;
+            });
+        },
+        /**
+         * 分页
+         */
+        handleCurrentChange(val) {
+            this.page = val;
             this.getArticles();
-            this.$message.success(response.data.message);
-          });
-        })
-        .catch(() => {});
+        },
+        /**
+         * 删除文章
+         */
+        deleteArticle(scope) {
+            this.$confirm("是否删除?", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning"
+            })
+                .then(() => {
+                    deleteArticle(scope.row.id).then(response => {
+                        this.getArticles();
+                        this.$message.success(response.data.message);
+                    });
+                })
+                .catch(() => {});
+        },
+        editArticle(article) {
+            this.$router.push("/articles/" + article.id);
+        },
+        /**
+         * 删除标签
+         */
+        handleTagClose(index, tags) {
+            deleteTag(tags[index].id).then(() => {
+                tags.splice(index, 1);
+                this.$notify({
+                    title: "成功",
+                    message: "标签删除成功",
+                    type: "success",
+                    duration: 2000
+                });
+            });
+        }
     },
-    editArticle(article) {
-      this.$router.push("/articles/" + article.id);
-    },
-    /**
-     * 删除标签
-     */
-    handleTagClose(index, tags) {
-      deleteTag(tags[index].id).then(() => {
-        tags.splice(index, 1);
-        this.$notify({
-          title: "成功",
-          message: "标签删除成功",
-          type: "success",
-          duration: 2000
-        });
-      });
+    mounted() {
+        this.getArticles();
     }
-  },
-  mounted() {
-    this.getArticles();
-  }
 };
 </script>
 

@@ -9,11 +9,11 @@ import request from "@/utils/request";
  * @returns
  */
 export function login(data) {
-  return request({
-    url: "login",
-    method: "post",
-    data
-  });
+    return request({
+        url: "login",
+        method: "post",
+        data
+    });
 }
 
 /**
@@ -23,10 +23,10 @@ export function login(data) {
  * @returns
  */
 export function logout() {
-  return request({
-    url: "/logout",
-    method: "get"
-  });
+    return request({
+        url: "/logout",
+        method: "get"
+    });
 }
 
 /**
@@ -35,10 +35,10 @@ export function logout() {
  * @returns
  */
 export function refresh() {
-  return request({
-    url: "/tokens/refresh",
-    method: "get"
-  });
+    return request({
+        url: "/tokens/refresh",
+        method: "get"
+    });
 }
 
 /**
@@ -47,9 +47,9 @@ export function refresh() {
  * @param {*} data
  */
 export function reset(data) {
-  return request({
-    url: "/reset",
-    method: "post",
-    data
-  });
+    return request({
+        url: "/reset",
+        method: "post",
+        data
+    });
 }

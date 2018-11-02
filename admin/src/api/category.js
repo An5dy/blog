@@ -4,10 +4,10 @@ import request from "@/utils/request";
  * 获取分类列表
  */
 export function getCategories() {
-  return request({
-    url: "/categories",
-    method: "get"
-  });
+    return request({
+        url: "/categories",
+        method: "get"
+    });
 }
 
 /**
@@ -16,11 +16,11 @@ export function getCategories() {
  * @param {*} data
  */
 export function storeCategory(data) {
-  return request({
-    url: "/categories",
-    method: "post",
-    data
-  });
+    return request({
+        url: "/categories",
+        method: "post",
+        data
+    });
 }
 
 /**
@@ -30,12 +30,12 @@ export function storeCategory(data) {
  * @param {*} id
  */
 export function updateCategory(data, id) {
-  data["_method"] = "PUT";
-  return request({
-    url: "/categories/" + id,
-    method: "post",
-    data
-  });
+    data["_method"] = "PUT";
+    return request({
+        url: "/categories/" + id,
+        method: "post",
+        data
+    });
 }
 
 /**
@@ -44,11 +44,11 @@ export function updateCategory(data, id) {
  * @param {*} id
  */
 export function deleteCategory(id) {
-  return request({
-    url: "/categories/" + id,
-    method: "post",
-    data: {
-      _method: "DELETE"
-    }
-  });
+    return request({
+        url: "/categories/" + id,
+        method: "post",
+        data: {
+            _method: "DELETE"
+        }
+    });
 }
